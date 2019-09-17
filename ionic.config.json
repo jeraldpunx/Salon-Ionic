@@ -1,0 +1,7 @@
+{
+  "name": "Book A Point",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

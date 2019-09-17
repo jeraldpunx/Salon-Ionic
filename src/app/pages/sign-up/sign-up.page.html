@@ -1,0 +1,39 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button fill="clear" mode="md" (click)="backPage()">
+        <ion-icon src="../../../assets/images/General/noun_Arrow_1256499.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="title ion-text-center">Create an Account</h1>
+  <form>
+    <ion-input name="userName" [(ngModel)]="user.username" placeholder="User name" type="text">
+    </ion-input>
+
+    <ion-input placeholder="Email address" name="email" [(ngModel)]="user.email" type="text"></ion-input>
+
+    <ion-input placeholder="Phone number" name="phone" [(ngModel)]="user.phone_no" type="text"></ion-input>
+
+    <ion-datetime class="date_picker" placeholder="Date of Birth" displayFormat="DD-MM-YYYY"></ion-datetime>
+
+    <ion-input placeholder="Password" name="password" [(ngModel)]="user.password" type="password"></ion-input>
+
+    <ion-input placeholder="Confirm password" name="confirm_password" [(ngModel)]="user.confirm_password"
+      type="password"></ion-input>
+
+    <ion-button class="btn-SignUp" mode="md" expand="full" shape="round" fill="solid" (click)="register()">
+      Sign up
+    </ion-button>
+  </form>
+  <p class="terms-text ion-text-center">By continuing <span class="light-text">Sign up</span> you agree to the following
+    <br> <span class="light-text">Terms &
+      Conditions</span>
+    without
+    reservation.
+  </p>
+  <p class="ion-text-center account-text">Already have an account? <a (click)="signIn()"> Sign in</a></p>
+</ion-content>
