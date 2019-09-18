@@ -10,7 +10,7 @@ declare var google;
   styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit {
-  @ViewChild('map') mapElement: ElementRef;
+  @ViewChild('map', {static: false}) mapElement: ElementRef;
   map: any;
   searchText: any;
   salonList: any = [

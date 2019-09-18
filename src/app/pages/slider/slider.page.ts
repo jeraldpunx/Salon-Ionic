@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
   styleUrls: ["./slider.page.scss"]
 })
 export class SliderPage implements OnInit {
-  @ViewChild("slides") slides: any;
+  @ViewChild("slides", {static: false}) slides: any;
   activeIndex: any = 0;
   slideOpts: any = {
     speed: 400

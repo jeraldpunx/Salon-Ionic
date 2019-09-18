@@ -1,19 +1,20 @@
-import { Component, QueryList, ViewChildren } from "@angular/core";
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
 
 import {
   Platform,
   IonRouterOutlet,
   ModalController,
   ToastController
-} from "@ionic/angular";
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { Router } from "@angular/router";
-import { async } from "@angular/core/testing";
+} from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Router } from '@angular/router';
+import { async } from '@angular/core/testing';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "app.component.html"
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   lastTimeBackPress = 0;
@@ -26,7 +27,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     public modalCtrl: ModalController,
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private authService: AuthenticationService
   ) {
     this.initializeApp();
   }
@@ -36,6 +38,18 @@ export class AppComponent {
       this.statusBar.styleLightContent();
       this.splashScreen.hide();
       this.backButtonEvent();
+      this.authenticationEvent();
+    });
+  }
+
+  authenticationEvent() {
+    this.authService.authenticationState.subscribe(state => {
+      console.log('Auth Changed: ', state);
+      if (state) {
+        this.router.navigate(['login']);
+      } else {
+        this.router.navigate(['login']);
+      }
     });
   }
 
@@ -55,13 +69,13 @@ export class AppComponent {
         if (outlet && outlet.canGoBack()) {
           outlet.pop();
         } else if (
-          this.router.url === "/tabs/home" ||
-          this.router.url === "/tabs/nearBy" ||
-          this.router.url === "/tabs/profile" ||
-          this.router.url === "/tabs/notification" ||
-          this.router.url === "/tabs/appoinment" ||
-          this.router.url === "/starter" ||
-          this.router.url === "/sign-in"
+          this.router.url === '/tabs/home' ||
+          this.router.url === '/tabs/nearBy' ||
+          this.router.url === '/tabs/profile' ||
+          this.router.url === '/tabs/notification' ||
+          this.router.url === '/tabs/appoinment' ||
+          this.router.url === '/starter' ||
+          this.router.url === '/sign-in'
         ) {
           if (
             new Date().getTime() - this.lastTimeBackPress <
@@ -78,7 +92,7 @@ export class AppComponent {
   }
   async showToast() {
     const toast = await this.toastController.create({
-      message: "press back again to exit App.",
+      message: 'press back again to exit App.',
       duration: 2000
     });
     toast.present();

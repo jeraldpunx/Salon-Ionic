@@ -11,7 +11,7 @@ declare var google;
   styleUrls: ["./near-by.page.scss"]
 })
 export class NearByPage implements OnInit {
-  @ViewChild("map") mapElement: ElementRef;
+  @ViewChild("map", {static: false}) mapElement: ElementRef;
   map: any;
   searchText: any;
   salonList: any = [

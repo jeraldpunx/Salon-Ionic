@@ -8,7 +8,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 })
 export class OTPVerificationPage implements OnInit {
   opt: any = {};
-  @ViewChild("a") a;
+  @ViewChild("a", {static: false}) a;
   constructor(private navCtrl: NavController) {
     setTimeout(() => {
       this.a.setFocus();
